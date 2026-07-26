@@ -3,8 +3,8 @@ class CodingBridge < Formula
 
   desc "Run Claude Code / Codex on your own machine and drive it from the web"
   homepage "https://github.com/AceDataCloud/CodingBridge"
-  url "https://files.pythonhosted.org/packages/e5/30/cc0f57cea888945892f6bd133c5a186de9bb740013000b3f830c5f34d6de/coding_bridge-2026.7.22.1.tar.gz"
-  sha256 "b89424219a6fec2046b41d563b6e061f06f471f72cb0193506ed839838203e66"
+  url "https://files.pythonhosted.org/packages/29/d4/cf4114d9b821eabda6b69cd64d9ec4fd525dcb98da756f40f4646a01a0a5/coding_bridge-2026.7.26.0.tar.gz"
+  sha256 "0736414caa1ce2d3a09b3ad1b03a8c5bb324a8da6dbbfbc718d9a3698d34569b"
   license "AGPL-3.0-or-later"
 
   # cryptography, pydantic-core and rpds-py ship Rust/native extensions that
