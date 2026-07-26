@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test-bot:
@@ -31,3 +32,37 @@ jobs:
 
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
+
+  # test-bot's --only-formulae only runs on PRs (it diffs changed formulae), so
+  # on push/dispatch nothing ever actually BUILDS the formula. This job runs the
+  # exact command a user runs, from source, and is the real install gate.
+  install:
+    name: brew install (from source)
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap + install from source
+        run: |
+          brew tap acedatacloud/tap https://github.com/AceDataCloud/homebrew-tap
+          brew install --build-from-source --verbose acedatacloud/tap/coding-bridge
+
+      - name: Verify the CLI works
+        run: |
+          coding-bridge --help
+          coding-bridge status
+          coding-bridge service --help
+
+      - name: Run the formula's own test block
+        run: brew test acedatacloud/tap/coding-bridge
+
+      - name: Verify brew services sees the daemon
+        run: |
+          # The service block must register; we do NOT start it (that needs a
+          # paired node token, which CI has no way to obtain).
+          brew services list | grep -i coding-bridge
