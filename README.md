@@ -38,3 +38,4 @@ release. When the dependency tree changes, regenerate the `resource` blocks:
 ```bash
 brew update-python-resources acedatacloud/tap/coding-bridge
 ```
+
