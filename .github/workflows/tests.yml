@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@9f17989bd508c794353d974d1756f23b0bcf10c1
 
       - name: Cache Homebrew Bundler RubyGems
         uses: actions/cache@v4
@@ -45,11 +45,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@9f17989bd508c794353d974d1756f23b0bcf10c1
 
       - name: Tap + install from source
         run: |
           brew tap acedatacloud/tap https://github.com/AceDataCloud/homebrew-tap
+          tap_dir="$(brew --repository acedatacloud/tap)"
+          git -C "$tap_dir" fetch origin "$GITHUB_SHA"
+          git -C "$tap_dir" checkout --detach FETCH_HEAD
           brew install --build-from-source --verbose acedatacloud/tap/coding-bridge
 
       - name: Verify the CLI works
