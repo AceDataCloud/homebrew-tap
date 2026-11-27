@@ -3,8 +3,8 @@ class AcedatacloudCli < Formula
 
   desc "Generate media, search the web and retrieve Ace Data Cloud tasks"
   homepage "https://github.com/AceDataCloud/AceDataCloudCli"
-  url "https://files.pythonhosted.org/packages/c9/3e/05c7034059904703ce3be1581dddb2cff1f73005954267a175ba21335990/acedatacloud_cli-2026.11.27.2.tar.gz"
-  sha256 "88bd69984c2881a92503ab6e1ae153dd477d24e480e231e852cdd7f6dfce0894"
+  url "https://files.pythonhosted.org/packages/f3/3f/921183cd70c00f1d204356cc2bd4f471d9a9dc287773c8c8551513ebb509/acedatacloud_cli-2026.11.27.3.tar.gz"
+  sha256 "17361d641b3a3048f53225cd628670c4b43a38fa0a7275be01b57970115724f0"
   license "MIT"
 
   depends_on "certifi" => :no_linkage
@@ -79,8 +79,12 @@ class AcedatacloudCli < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/adc --version")
-    assert_match "nano-banana", shell_output("#{bin}/adc image --help")
-    assert_match "seedance", shell_output("#{bin}/adc video --help")
+    images = shell_output("#{bin}/adc image --help")
+    assert_match "nano-banana", images
+    assert_match "gpt-image", images
+    videos = shell_output("#{bin}/adc video --help")
+    assert_match "seedance", videos
+    assert_match "kling", videos
     assert_match "acemusic", shell_output("#{bin}/adc services")
     packages = JSON.parse(shell_output("#{bin}/adc packages suno --json"))
     assert_includes packages.fetch("services").map { |service| service.fetch("slug") }, "suno"

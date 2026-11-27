@@ -66,6 +66,9 @@ jobs:
           brew test acedatacloud/tap/coding-bridge
           brew test acedatacloud/tap/acedatacloud-cli
 
+      - name: Verify installed adc media commands with a local HTTP fixture
+        run: python3 "$(brew --repository acedatacloud/tap)/.github/scripts/test_adc_media.py" "$(brew --prefix acedatacloud/tap/acedatacloud-cli)/bin/adc"
+
       - name: Verify brew services sees the daemon
         run: |
           # The service block must register; we do NOT start it (that needs a
