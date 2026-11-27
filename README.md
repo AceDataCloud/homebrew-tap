@@ -2,6 +2,27 @@
 
 [Homebrew](https://brew.sh/) tap for AceDataCloud command-line tools (macOS & Linux).
 
+## Ace Data Cloud CLI
+
+Install the `adc` command from this tap on macOS or Linux.
+
+```bash
+brew install acedatacloud/tap/acedatacloud-cli
+adc services
+adc packages "gpt image" --json
+```
+
+`adc services` lists the built-in routes. `adc packages` searches the catalog of separately installable service CLIs and MCP servers. Both commands work without an account. For API calls, use `adc auth login` with an [application key](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen) for the service you plan to use.
+
+| Built-in command | Services |
+| --- | --- |
+| `adc music` | <img src="https://cdn.acedata.cloud/l3ffw7.jpg" width="20" height="20" alt=""> Suno, <img src="https://cdn.acedata.cloud/acemusic-icon-52deddfc87b9.png" width="20" height="20" alt=""> ACE Music |
+| `adc image` | <img src="https://cdn.acedata.cloud/859plc.jpg" width="20" height="20" alt=""> Nano Banana, <img src="https://cdn.acedata.cloud/9egrbn.png" width="20" height="20" alt=""> Seedream, <img src="https://cdn.acedata.cloud/ogm2oa.png" width="20" height="20" alt=""> FLUX |
+| `adc video` | <img src="https://cdn.acedata.cloud/9q90dl.png" width="20" height="20" alt=""> Seedance, <img src="https://cdn.acedata.cloud/8nxyy9.jpg" width="20" height="20" alt=""> Veo, <img src="https://cdn.acedata.cloud/ahjfwi.png" width="20" height="20" alt=""> Luma |
+| `adc search` | <img src="https://cdn.acedata.cloud/27e11e555d.png" width="20" height="20" alt=""> Google Search |
+
+Use `adc task <task-id> --service <service>` to retrieve an existing media task. See the [CLI documentation](https://github.com/AceDataCloud/AceDataCloudCli) for command options.
+
 ## coding-bridge
 
 Run Claude Code / Codex on your own machine and drive it from the web.
