@@ -53,7 +53,7 @@ jobs:
           tap_dir="$(brew --repository acedatacloud/tap)"
           git -C "$tap_dir" fetch origin "$GITHUB_SHA"
           git -C "$tap_dir" checkout --detach FETCH_HEAD
-          brew install --build-from-source --verbose acedatacloud/tap/coding-bridge
+          brew install --build-from-source --verbose acedatacloud/tap/coding-bridge acedatacloud/tap/acedatacloud-cli
 
       - name: Verify the CLI works
         run: |
@@ -62,7 +62,9 @@ jobs:
           coding-bridge service --help
 
       - name: Run the formula's own test block
-        run: brew test acedatacloud/tap/coding-bridge
+        run: |
+          brew test acedatacloud/tap/coding-bridge
+          brew test acedatacloud/tap/acedatacloud-cli
 
       - name: Verify brew services sees the daemon
         run: |
