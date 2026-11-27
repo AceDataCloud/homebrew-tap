@@ -17,9 +17,16 @@ adc packages "gpt image" --json
 | Built-in command | Services |
 | --- | --- |
 | `adc music` | <img src="https://cdn.acedata.cloud/l3ffw7.jpg" width="20" height="20" alt=""> Suno, <img src="https://cdn.acedata.cloud/acemusic-icon-52deddfc87b9.png" width="20" height="20" alt=""> ACE Music |
-| `adc image` | <img src="https://cdn.acedata.cloud/859plc.jpg" width="20" height="20" alt=""> Nano Banana, <img src="https://cdn.acedata.cloud/9egrbn.png" width="20" height="20" alt=""> Seedream, <img src="https://cdn.acedata.cloud/ogm2oa.png" width="20" height="20" alt=""> FLUX |
-| `adc video` | <img src="https://cdn.acedata.cloud/9q90dl.png" width="20" height="20" alt=""> Seedance, <img src="https://cdn.acedata.cloud/8nxyy9.jpg" width="20" height="20" alt=""> Veo, <img src="https://cdn.acedata.cloud/ahjfwi.png" width="20" height="20" alt=""> Luma |
+| `adc image` | <img src="https://cdn.acedata.cloud/859plc.jpg" width="20" height="20" alt=""> Nano Banana, <img src="https://cdn.acedata.cloud/9egrbn.png" width="20" height="20" alt=""> Seedream, <img src="https://cdn.acedata.cloud/ogm2oa.png" width="20" height="20" alt=""> FLUX, <img src="https://raw.githubusercontent.com/AceDataCloud/GPTImageDify/6916f7f1ee7fdb9531abf1c3ef1c57a34061eaf7/_assets/icon.png" width="20" height="20" alt=""> GPT Image |
+| `adc video` | <img src="https://cdn.acedata.cloud/9q90dl.png" width="20" height="20" alt=""> Seedance, <img src="https://cdn.acedata.cloud/8nxyy9.jpg" width="20" height="20" alt=""> Veo, <img src="https://cdn.acedata.cloud/ahjfwi.png" width="20" height="20" alt=""> Luma, <img src="https://cdn.acedata.cloud/qpbbbb.jpg" width="20" height="20" alt=""> Kling |
 | `adc search` | <img src="https://cdn.acedata.cloud/27e11e555d.png" width="20" height="20" alt=""> Google Search |
+
+For GPT Image, supply the model and use `--async` when you need a task ID. A normal request returns the image results. Kling accepts a prompt or an opening reference image and returns a video task ID.
+
+```bash
+adc image "A red fox in the snow" --service gpt-image --model gpt-image-2 --size 1024x1024
+adc video "A heron lands by the lake" --service kling --model kling-v3 --mode pro --duration 5
+```
 
 Use `adc task <task-id> --service <service>` to retrieve an existing media task. See the [CLI documentation](https://github.com/AceDataCloud/AceDataCloudCli) for command options.
 
